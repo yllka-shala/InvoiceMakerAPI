@@ -1,4 +1,5 @@
 ﻿using Data.APIContext;
+using Data.Enums;
 using Data.Models;
 using InvoiceMakerAPI.DTOs;
 using InvoiceMakerAPI.Services.Interfaces;
@@ -27,6 +28,7 @@ namespace InvoiceMakerAPI.Services.Implementations
                 ClientAddress = invoiceDto.ClientAddress,
                 IssueDate = DateTime.Now,
                 DueDate = invoiceDto.DueDate,
+                Currency = invoiceDto.Currency,
                 Items = invoiceDto.Items.Select(i => new InvoiceItem
                 {
                     Description = i.Description,

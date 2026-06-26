@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace Data.Models
         public decimal DiscountRate { get; set; }
         public decimal TaxAmount { get; set; }
         public decimal DiscountAmount { get; set; }
+        public Currency Currency { get; set; }
+        public InvoiceStatus Status { get; set; } = InvoiceStatus.Draft;
         public ICollection<InvoiceItem> Items { get; set; } = new List<InvoiceItem>();
     }
 }

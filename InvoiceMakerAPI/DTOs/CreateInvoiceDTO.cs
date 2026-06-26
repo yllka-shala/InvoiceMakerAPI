@@ -1,4 +1,6 @@
-﻿namespace InvoiceMakerAPI.DTOs
+﻿using Data.Enums;
+
+namespace InvoiceMakerAPI.DTOs
 {
     public class CreateInvoiceDTO
     {
@@ -8,6 +10,7 @@
         public DateTime DueDate { get; set; }
         public decimal DiscountRate { get; set; }
         public decimal TaxRate { get; set; }
+        public Currency Currency { get; set; }
         public List<CreateInvoiceItemDTO> Items { get; set; } = new();
     }
 }
