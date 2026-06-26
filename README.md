@@ -8,9 +8,11 @@ InvoiceMakerAPI is a system that allows users to:
 * Authenticate.
 * Create Invoices.
 * Generate Invoices.
+* Includes tax, discount and subtotal logic.
+* Multi-currency support. 
 * Get all or individual invoices.
 * Delete Invoices.
-* Generate several reports.
+* Generate several reports (Revenue summary, Revenue by month, Invoice status breakdown, Top clients).
 
 ## 🛠 Tech Stack
 
