@@ -24,7 +24,7 @@ namespace InvoiceMakerAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("monthly")]
+        [HttpGet("monthly/{year}")]
         public async Task<IActionResult> GetMonthly(int year)
         {
             var result = await _reportService.GetMonthlyRevenue(year);
@@ -38,7 +38,7 @@ namespace InvoiceMakerAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("top-clients")]
+        [HttpGet("top-clients/{top}")]
         public async Task<IActionResult> GetTopClients(int top = 5)
         {
             var result = await _reportService.GetTopClients(top);
