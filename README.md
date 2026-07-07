@@ -8,9 +8,11 @@ InvoiceMakerAPI is a system that allows users to:
 * Authenticate.
 * Create Invoices.
 * Generate Invoices.
+* Email invoices to client.
 * Includes tax, discount and subtotal logic.
 * Multi-currency support. 
 * Get all or individual invoices.
+* Update Invoices.
 * Delete Invoices.
 * Generate several reports (Revenue summary, Revenue by month, Invoice status breakdown, Top clients).
 
@@ -21,7 +23,7 @@ InvoiceMakerAPI is a system that allows users to:
 * **Database:** SQL Server
 * **Authentication & Security:** ASP.NET Core Identity, JWT
 * **ORM:** Entity Framework Core
-* **Files library:** QuestPdf for invoice design and generation.
+* **Files library:** QuestPdf for invoice design and generation, MailKit for email service.
 * **API Documentation:** Swagger
 
 ## 🚀 Getting Started
