@@ -11,11 +11,13 @@ namespace InvoiceMakerAPI.Services.Implementations
     {
         private readonly ApiDbContext _context;
         private readonly IPdfService _pdfService;
+        private readonly IEmailService _emailService;
 
-        public InvoiceService(ApiDbContext context, IPdfService pdfService)
+        public InvoiceService(ApiDbContext context, IPdfService pdfService, IEmailService emailService)
         {
             _context = context;
             _pdfService = pdfService;
+            _emailService = emailService;
         }
 
         public async Task<InvoiceResponseDTO> CreateInvoiceAsync(CreateInvoiceDTO invoiceDto)
@@ -61,7 +63,12 @@ namespace InvoiceMakerAPI.Services.Implementations
                                 .Include(i => i.Items)
                                 .FirstOrDefault(i => i.Id == invoiceId);
 
-            return _pdfService.GenerateInvoicePdf(invoice);
+            var pdfBytes = _pdfService.GenerateInvoicePdf(invoice);
+
+            if (invoice.ClientEmail is not null)
+                _emailService.SendEmailAsync(invoice.ClientEmail, pdfBytes);
+            
+            return pdfBytes;
         }
 
         public async Task<bool> DeleteInvoiceAsync(Guid invoiceId)

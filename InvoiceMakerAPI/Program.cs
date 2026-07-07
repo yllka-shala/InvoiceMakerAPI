@@ -1,5 +1,6 @@
 using Data.APIContext;
 using Data.Models;
+using InvoiceMakerAPI.DTOs;
 using InvoiceMakerAPI.Services.Implementations;
 using InvoiceMakerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,11 +34,14 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => {
 .AddSignInManager()
 .AddDefaultTokenProviders();
 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddAuthentication(options =>
 {
