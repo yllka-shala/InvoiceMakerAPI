@@ -108,5 +108,31 @@ namespace InvoiceMakerAPI.Services.Implementations
                 TotalAmount = invoices.TotalAmount
             };
         }
+
+        public async Task<InvoiceResponseDTO> UpdateInvoiceAsync(UpdateInvoiceDTO invoice)
+        {
+
+            var existingInvoice = await _context.Invoices
+                                    .Include(i => i.Items)
+                                    .FirstOrDefaultAsync(i => i.Id == invoice.Id);
+
+            if (existingInvoice is null)
+                return null;
+
+            existingInvoice.ClientName = invoice.ClientName;
+            existingInvoice.ClientEmail = invoice.ClientEmail;
+            existingInvoice.ClientAddress = invoice.ClientAddress;
+            existingInvoice.DueDate = invoice.DueDate;
+
+            _context.Invoices.Update(existingInvoice);
+            await _context.SaveChangesAsync();
+
+            return new InvoiceResponseDTO
+            {
+                Id = existingInvoice.Id,
+                InvoiceNumber = existingInvoice.InvoiceNumber,
+                TotalAmount = existingInvoice.TotalAmount
+            };
+        }
     }
 }

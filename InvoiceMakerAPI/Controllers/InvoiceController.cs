@@ -63,6 +63,17 @@ namespace InvoiceMakerAPI.Controllers
             return Ok(invoice);
         }
 
+        [HttpPut("UpdateInvoice")]
+        public async Task<IActionResult> UpdateInvoice(UpdateInvoiceDTO dto)
+        {
+            var invoice = await _invoiceService.UpdateInvoiceAsync(dto);
+            if (invoice == null)
+            {
+                return NotFound();
+            }
+            return Ok(invoice);
+        }
+
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
